@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cesta | MAREA STUDIO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Montserrat', sans-serif; background-color: #d2c9b4; color: #3d352d; }
+        
+        header { background: #c6baa0; padding: 18px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eae2d0; position: sticky; top: 0; z-index: 100; }
+        .logo { font-size: 1.4rem; font-weight: 500; letter-spacing: 3px; color: #2c241d; text-decoration: none; }
+        nav a { margin-left: 25px; text-decoration: none; color: #6e6154; font-size: 0.9rem; transition: color 0.3s; }
+        nav a:hover { color: #b89768; }
+        
+        .container { max-width: 800px; margin: 40px auto; padding: 0 20px 60px; }
+        .section-title { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; margin-bottom: 25px; text-align: center; font-weight: 400; color: #2c241d; }
+        
+        .cart-box { background: #e9e0c9; padding: 30px; border-radius: 12px; border: 1px solid #f2ede4; box-shadow: 0 4px 15px rgba(61, 53, 45, 0.04); }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #f2ede4; }
+        .cart-item img { width: 60px; height: 60px; object-fit: cover; border-radius: 6px; margin-right: 15px; }
+        .item-info { display: flex; align-items: center; flex-grow: 1; }
+        .item-name { font-size: 1rem; color: #2c241d; font-weight: 500; }
+        .item-price { font-size: 1rem; color: #b89768; font-weight: 600; }
+        
+        .cart-total { display: flex; justify-content: space-between; margin-top: 25px; font-size: 1.2rem; font-weight: 600; color: #2c241d; }
+        .empty-cart { text-align: center; color: #7a6e60; padding: 30px 0; font-size: 1rem; }
+        
+        .actions { margin-top: 30px; display: flex; gap: 15px; }
+        .btn-checkout { flex: 2; padding: 12px; background-color: #b89768; color: white; border: none; border-radius: 25px; font-weight: 500; cursor: pointer; text-align: center; text-decoration: none; font-size: 0.95rem; transition: background 0.3s; }
+        .btn-checkout:hover { background-color: #9c7b4c; }
+        .btn-empty { flex: 1; padding: 12px; background-color: transparent; border: 1px solid #c2b5a3; color: #7a6e60; border-radius: 25px; font-weight: 500; cursor: pointer; text-align: center; text-decoration: none; font-size: 0.95rem; transition: all 0.3s; }
+        .btn-empty:hover { border-color: #3d352d; color: #3d352d; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #7a6e60; text-decoration: none; font-size: 0.9rem; }
+        .back-link:hover { color: #b89768; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="/" class="logo">MAREA STUDIO</a>
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="/#tienda">Colección</a>
+            <a href="/contacto">Contacto</a>
+            <a href="/carrito">Cesta</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1 class="section-title">Tu Cesta</h1>
+        
+        <div class="cart-box">
+            {% if carrito and carrito|length > 0 %}
+                {% for item in carrito %}
+                <div class="cart-item">
+                    <div class="item-info">
+                        <img src="{{ item.imagen }}" alt="{{ item.nombre }}">
+                        <span class="item-name">{{ item.nombre }}</span>
+                    </div>
+                    <span class="item-price">{{ item.precio }} €</span>
+                </div>
+                {% endfor %}
+                <!-- FORMULARIO DE CÓDIGO DE DESCUENTO -->
+    <form action="/aplicar-cupon" method="POST" style="margin-top: 20px; display: flex; gap: 10px;">
+        <input type="text" name="codigo" placeholder="Código de descuento (ej. Flask)" style="flex: 1; padding: 8px 12px; border: 1px solid #e2dacd; border-radius: 6px; font-size: 0.85rem; outline: none;" value="{{ descuento_aplicado.split(' ')[0] if descuento_aplicado else '' }}">
+        <button type="submit" style="padding: 8px 15px; background: #3d352d; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 0.85rem;">Aplicar</button>
+    </form>
+
+    {% if descuento_aplicado %}
+        <div style="font-size: 0.85rem; color: #b89768; margin-top: 8px; display: flex; justify-content: space-between; align-items: center;">
+            <span>Cupón aplicado: <strong>{{ descuento_aplicado }}</strong></span>
+            <a href="/quitar-cupon" style="color: #c96b6b; text-decoration: none; font-size: 0.8rem;">Quitar</a>
+        </div>
+    {% endif %}
+                
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span>{{ total }} €</span>
+                </div>
+
+                <form action="/checkout" method="GET">
+    <div class="actions">
+        <a href="/vaciar" class="btn-empty">Vaciar cesta</a>
+        <button type="submit" class="btn-checkout">Proceder al pago</button>
+    </div>
+</form>
+
+            {% else %}
+                <p class="empty-cart">Tu cesta está vacía actualmente.</p>
+            {% endif %}
+        </div>
+
+        <a href="/" class="back-link">← Seguir comprando</a>
+    </div>
+
+</body>
+</html>

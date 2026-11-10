@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto | MAREA STUDIO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Montserrat', sans-serif; background-color: #d2c9b4; color: #3d352d; }
+        
+        /* Cabecera */
+        header { background: #c6baa0; padding: 18px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eae2d0; position: sticky; top: 0; z-index: 100; }
+        .logo { font-size: 1.4rem; font-weight: 500; letter-spacing: 3px; color: #2c241d; text-decoration: none; }
+        nav a { margin-left: 25px; text-decoration: none; color: #6e6154; font-size: 0.9rem; transition: color 0.3s; }
+        nav a:hover { color: #b89768; }
+        
+        /* Contenedor principal */
+        .container { max-width: 800px; margin: 40px auto; padding: 0 20px 60px; }
+        .section-title { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; margin-bottom: 10px; text-align: center; font-weight: 400; color: #2c241d; }
+        .section-subtitle { text-align: center; color: #7a6e60; margin-bottom: 35px; font-size: 0.95rem; }
+
+        /* Formulario de contacto */
+        .contact-form { background: #e9e0c9; padding: 35px; border-radius: 12px; border: 1px solid #e9e0c9; box-shadow: 0 4px 15px rgba(61, 53, 45, 0.04); margin-bottom: 40px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-size: 0.9rem; color: #3d352d; font-weight: 500; }
+        .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #e2dacd; border-radius: 6px; font-family: 'Montserrat', sans-serif; font-size: 0.9rem; background-color: #e9e0c9; color: #3d352d; outline: none; transition: border-color 0.3s; }
+        .form-group input:focus, .form-group textarea:focus { border-color: #b89768; }
+        
+        .btn-submit { width: 100%; padding: 12px; background-color: #b89768; color: #e9e0c9; border: none; border-radius: 25px; font-weight: 500; cursor: pointer; font-size: 0.95rem; letter-spacing: 1px; transition: background 0.3s; }
+        .btn-submit:hover { background-color: #9c7b4c; }
+
+        /* Sección del mapa */
+        .map-section { text-align: center; }
+        .map-title { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; margin-bottom: 15px; color: #2c241d; }
+        .map-container { width: 100%; height: 260px; border-radius: 12px; overflow: hidden; border: 1px solid #f2ede4; box-shadow: 0 4px 15px rgba(61, 53, 45, 0.04); }
+        .map-container iframe { width: 100%; height: 100%; border: 0; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="/" class="logo">MAREA STUDIO</a>
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="/#tienda">Colección</a>
+            <a href="/contacto">Contacto</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1 class="section-title">Ponte en contacto</h1>
+        <p class="section-subtitle">¿Tienes alguna duda sobre nuestras piezas artesanales? Escríbenos y te responderemos encantados.</p>
+
+        <form class="contact-form" action="#" method="post" onsubmit="event.preventDefault(); alert('¡Gracias por contactar con MAREA STUDIO! Te responderemos muy pronto.');">
+            <div class="form-group">
+                <label for="nombre">Nombre completo</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Correo electrónico</label>
+                <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="mensaje">Mensaje</label>
+                <textarea id="mensaje" name="mensaje" rows="5" placeholder="¿En qué podemos ayudarte?" required></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit">Enviar mensaje</button>
+        </form>
+
+        <div class="map-section">
+            <h2 class="map-title">Visita nuestro taller</h2>
+            <div class="map-container">
+                <!-- Mapa interactivo de Google Maps embebido -->
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3197.893043818621!2d-4.421398823616608!3d36.72127397226848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd72f7bf287c8d99%3A0xb35a901e133e6bc4!2sCalle%20Larios%2C%20M%C3%A1laga!5e0!3m2!1ses!2ses!4v1700000000000!5m2!1ses!2ses" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

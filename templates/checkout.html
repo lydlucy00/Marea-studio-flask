@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pago Seguro | MAREA STUDIO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Montserrat', sans-serif; background-color: #d2c9b4; color: #3d352d; }
+        
+        header { background: #c6baa0; padding: 18px 40px; border-bottom: 1px solid #c6baa0; text-align: center; }
+        .logo { font-size: 1.4rem; font-weight: 500; letter-spacing: 3px; color: #2c241d; text-decoration: none; }
+        
+        .container { max-width: 500px; margin: 40px auto; padding: 0 20px 60px; }
+        .section-title { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; margin-bottom: 10px; text-align: center; font-weight: 400; color: #2c241d; }
+        .section-subtitle { text-align: center; color: #7a6e60; margin-bottom: 25px; font-size: 0.9rem; }
+        
+        .checkout-box { background: #e9e0c9; padding: 30px; border-radius: 12px; border: 1px solid #f2ede4; box-shadow: 0 4px 15px rgba(61, 53, 45, 0.04); }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 6px; font-size: 0.85rem; color: #3d352d; font-weight: 500; }
+        .form-group input { width: 100%; padding: 10px; border: 1px solid #e2dacd; border-radius: 6px; font-family: 'Montserrat', sans-serif; font-size: 0.9rem; background-color: #fdfbf7; outline: none; }
+        .form-row { display: flex; gap: 10px; }
+        
+        .btn-pay { width: 100%; margin-top: 15px; padding: 12px; background-color: #b89768; color: white; border: none; border-radius: 25px; font-weight: 500; cursor: pointer; font-size: 0.95rem; letter-spacing: 1px; transition: background 0.3s; }
+        .btn-pay:hover { background-color: #9c7b4c; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #7a6e60; text-decoration: none; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="/" class="logo">MAREA STUDIO</a>
+    </header>
+
+    <div class="container">
+        <h1 class="section-title">Pago con Tarjeta</h1>
+        <p class="section-subtitle">Introduce tus datos simulados para completar la práctica.</p>
+
+        <div class="checkout-box">
+            <form action="/procesar-pago" method="POST">
+                <div class="form-group">
+                    <label>Titular de la tarjeta</label>
+                    <input type="text" placeholder="Ej. María García" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Número de tarjeta</label>
+                    <input type="text" placeholder="4532 •••• •••• ••••" maxlength="19" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group" style="flex: 1;">
+                        <label>Caducidad</label>
+                        <input type="text" placeholder="MM/AA" maxlength="5" required>
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label>CVV</label>
+                        <input type="password" placeholder="123" maxlength="4" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-pay">Pagar ahora</button>
+            </form>
+        </div>
+
+        <a href="/carrito" class="back-link">← Volver al carrito</a>
+    </div>
+
+</body>
+</html>
